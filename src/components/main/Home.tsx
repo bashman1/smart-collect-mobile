@@ -1,37 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { View, Image, TouchableOpacity, ScrollView, Appearance } from 'react-native';
-import { GenericQueryAll, LoggedInUser, System } from '../../databases/allSchemas';
 import RNBootSplash from "react-native-bootsplash";
 import { styles } from '../../styles/Styles';
 import { validatePhone, mailValidation, showToast, createAlert, setStatusBar, showLoading, localNotification } from '../../services/CommonService';
 import { Avatar, Button, Card, Text } from 'react-native-paper';
-// import { LineChart, BarChart, PieChart, ProgressChart, ContributionGraph, StackedBarChart } from "react-native-chart-kit";
-
 import { BarChart, LineChart, PieChart, PopulationPyramid } from "react-native-gifted-charts";
 import { Dimensions } from "react-native";
 const screenWidth = Dimensions.get("window").width;
+import changeNavigationBarColor, {
+    hideNavigationBar,
+    showNavigationBar,
+  } from 'react-native-navigation-bar-color';
 
 const Home = (props: any) => {
 
     const [statusBar, changeStatusBar] = useState(setStatusBar('#5F9B42', 'light-content', true, false));
 
+
+    const setNavigationColor = (color:any) => {
+        changeNavigationBarColor(color);
+    };
+
     useEffect(() => {
+        setNavigationColor("#5F9B42")
         setTimeout(() => {
             RNBootSplash.hide({ fade: true });
         }, 250);
     });
 
-    const checkIntro = () => {
-        GenericQueryAll(LoggedInUser).then((results: any) => {
-            createAlert("Here", JSON.stringify(results))
-            if (results == undefined || results.length < 1) {
-            } else {
-                // dispatch({type: 'INTRO', intro: results[0].done});
-                createAlert("Here", JSON.stringify(results))
-            }
-        }).catch((error) => { });
-    }
-      const barData = [
+    const barData = [
         {value: 250, label: 'Mon', labelTextStyle: {color: 'gray'}},
         {value: 500, label: 'Tue', frontColor: '#5F9B42', labelTextStyle: {color: 'gray'}},
         {value: 745, label: 'Wed', frontColor: '#5F9B42', labelTextStyle: {color: 'gray'}},
@@ -92,7 +89,7 @@ const Home = (props: any) => {
 
                             <TouchableOpacity style={styles.card} onPress={() => { }}>
                                 <Text style={styles.healthPalBlue}>Stock</Text>
-                                <Image style={styles.homeScreenIcon} source={require('../../assets/stock.png')} />
+                                <Image style={styles.homeScreenIcon} source={require('../../assets/1.png')} />
                             </TouchableOpacity>
 
                         </View>
@@ -100,7 +97,7 @@ const Home = (props: any) => {
 
                             <TouchableOpacity style={styles.card} onPress={()=>{}}>
                                 <Text style={styles.healthPalBlue}>Sales</Text>
-                                <Image style={styles.homeScreenIcon} source={require('../../assets/sales.png')} />
+                                <Image style={styles.homeScreenIcon} source={require('../../assets/2.png')} />
                             </TouchableOpacity>
 
                         </View>
@@ -110,7 +107,7 @@ const Home = (props: any) => {
 
 
                 <View style={styles.marginBottom}>
-                    <TouchableOpacity style={styles.touchableButton} onPress={()=>{}}>
+                    <TouchableOpacity style={styles.touchableButton} onPress={()=>{props.navigation.navigate('Orders')}}>
                         <Text style={styles.healthPalWhite}>Orders</Text>
                     </TouchableOpacity>
                 </View>

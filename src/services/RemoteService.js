@@ -3,7 +3,8 @@ import { createAlert, CheckConnectivity} from './CommonService';
 
 // export const baseUrl = "http://127.0.0.1:8000/api/"; 
 // export const baseUrl = "http://192.168.0.174:8000/api/"; 
-export const baseUrl = "http://137.184.230.127/api/"; 
+// export const baseUrl = "http://137.184.230.127/api/"; 
+export const baseUrl ="https://smartcollect.co.ug/api/"
 
 
 // 192.168.0.174

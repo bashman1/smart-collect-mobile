@@ -155,7 +155,7 @@ export function SideMenu(props) {
                                 />
                             )}
                             label="Stock"
-                            onPress={() => { props.navigation.navigate('Appointment') }}
+                            onPress={() => { props.navigation.navigate('CreateItem') }}
                         />
 
                         <DrawerItem
@@ -167,7 +167,7 @@ export function SideMenu(props) {
                                 />
                             )}
                             label="Point of sale"
-                            onPress={() => { props.navigation.navigate('PharmacyHome') }}
+                            onPress={() => { props.navigation.navigate('PointOfSale') }}
                         />
 {/* 
                         <DrawerItem
@@ -203,7 +203,7 @@ export function SideMenu(props) {
                                 />
                             )}
                             label="Sales"
-                            onPress={() => { props.navigation.navigate('Cart') }}
+                            onPress={() => { props.navigation.navigate('Sales') }}
                         />
 
                         <DrawerItem
@@ -215,7 +215,7 @@ export function SideMenu(props) {
                                 />
                             )}
                             label="Settings"
-                            onPress={() => { }}
+                            onPress={() => { props.navigation.navigate('Settings') }}
                         />
                     </Drawer.Section>
                     {/* <Drawer.Section title="Preferences">

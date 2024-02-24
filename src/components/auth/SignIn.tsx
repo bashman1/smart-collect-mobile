@@ -10,6 +10,10 @@ import { LoggedInUser, GenericInsert, GenericQueryAll } from '../../databases/al
 import { postToServer, postToServerWithToken } from '../../services/RemoteService';
 import { useDispatch, useSelector,Provider } from 'react-redux';
 import { addUserData } from '../../actions/UserData';
+import changeNavigationBarColor, {
+    hideNavigationBar,
+    showNavigationBar,
+  } from 'react-native-navigation-bar-color';
 // import { Provider } from 'react-redux';
 
 const SignIn = (props: any) => {
@@ -26,9 +30,8 @@ const SignIn = (props: any) => {
 
     const userData = useSelector((state:any) => state?.userDataReducer?.userDataList[0])
 
-
-
     useEffect(() => {
+        
         setTimeout(() => {
             RNBootSplash.hide({ fade: true });
         }, 250);

@@ -48,7 +48,7 @@ export const styles = StyleSheet.create(
             borderRadius: 10
         },
         padding: {
-            padding: 20
+            padding: 10
         },
         marginBottom10:{
             marginBottom: 10,
@@ -357,6 +357,12 @@ export const styles = StyleSheet.create(
         },
         lightTheme:{
             backgroundColor: '#ffffff'
+        },
+        selectStyle:{
+            borderRadius: 5
+        },
+        selectTextColor:{
+            color:"#000"
         }
 
     }

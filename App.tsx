@@ -9,9 +9,9 @@ import { IntroScreen } from './src/navigation/Navigation';
 import { AuthScreen } from './src/navigation/Navigation';
 import { MainScreen } from './src/navigation/Navigation';
 import { AuthContext } from './src/services/Context';
-import { validatePhone, mailValidation, showToast, createAlert, showLoading, localNotification } from './src/services/CommonService';
+import { validatePhone, mailValidation, showToast, createAlert, showLoading, localNotification, setStatusBar } from './src/services/CommonService';
 import { LoggedInUser, System, GenericQueryAll, GenericQueryWhere } from './src/databases/allSchemas';
-
+const [statusBar, changeStatusBar] = useState(setStatusBar('#5F9B42', 'light-content', true, false));
 
 function App(): JSX.Element {
 
@@ -111,6 +111,7 @@ function App(): JSX.Element {
 
   return (
     <AuthContext.Provider value={authContext} >
+      {statusBar}
       {
         (loginState.userToken !=null)?(<MainScreen/>):
         (loginState.isIntroDone ==true)?(<AuthScreen/>):
