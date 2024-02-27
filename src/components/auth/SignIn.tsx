@@ -30,8 +30,13 @@ const SignIn = (props: any) => {
 
     const userData = useSelector((state:any) => state?.userDataReducer?.userDataList[0])
 
+    const setNavigationColor = (color:any) => {
+        changeNavigationBarColor(color);
+    };
+
+
     useEffect(() => {
-        
+        // setNavigationColor("#5F9B42")
         setTimeout(() => {
             RNBootSplash.hide({ fade: true });
         }, 250);
@@ -85,12 +90,14 @@ const SignIn = (props: any) => {
                     updatedOn:data?.data?.user_data?.updated_on,
                     userType:data?.data?.user_data?.user_type
                 }
+                submitUserData(databaseData);
+                
                 GenericInsert(LoggedInUser, databaseData).then((loggedInUser) => {
-                    submitUserData(databaseData);
-                    signIn();
+                    createAlert("Inserted","")
                 }).catch((error) => {
                     createAlert('error', error)
                 })
+                signIn();
             }else{
                 createAlert("Login process failed",data.message)
             }
@@ -116,7 +123,8 @@ const SignIn = (props: any) => {
                 <View style={styles.marginBottom}>
                     <TextInput label="Password" mode='outlined'  placeholder="Password"
                         onChangeText={(password:any) => setPassword(password)} secureTextEntry={show_password}
-                        right={<TextInput.Icon name={() => <IonIcon name={password_icon} size={30} onPress={seePassword} />} />}
+                        right={<TextInput.Icon icon={() => <IonIcon name={password_icon} size={30} onPress={seePassword} />}
+                         />}
                     />
                 </View>
                 <View style={styles.marginBottom}>

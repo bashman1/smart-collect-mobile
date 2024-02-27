@@ -12,7 +12,8 @@
     "test": "jest",
     "debug": "cd android && ./gradlew assembleDebug",
     "apk": "cd android && ./gradlew assembleRelease",
-    "install": "adb install -r /home/bsh/Projects/ReactNative/SmartCollect1/android/app/build/outputs/apk/release/app-release.apk",
+    "installF": "adb install -r /home/bsh/Projects/ReactNative/SmartCollect1/android/app/build/outputs/apk/release/app-release.apk",
+    "install": "adb -s 8QCNW21A09000005 install -r /home/bsh/Projects/ReactNative/SmartCollect1/android/app/build/outputs/apk/release/app-release.apk",
     "p": "./gradlew assembleRelease",
     "clean": "cd android && ./gradlew clean",
     "aab": "cd android && ./gradlew bundleRelease",
@@ -65,6 +66,7 @@
     "metro-react-native-babel-preset": "0.76.8",
     "prettier": "^2.4.1",
     "react-test-renderer": "18.2.0",
+    "tailwindcss": "^3.4.1",
     "typescript": "4.8.4"
   },
   "engines": {

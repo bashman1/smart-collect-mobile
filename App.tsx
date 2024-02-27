@@ -11,11 +11,11 @@ import { MainScreen } from './src/navigation/Navigation';
 import { AuthContext } from './src/services/Context';
 import { validatePhone, mailValidation, showToast, createAlert, showLoading, localNotification, setStatusBar } from './src/services/CommonService';
 import { LoggedInUser, System, GenericQueryAll, GenericQueryWhere } from './src/databases/allSchemas';
-const [statusBar, changeStatusBar] = useState(setStatusBar('#5F9B42', 'light-content', true, false));
+
 
 function App(): JSX.Element {
 
-
+  const [statusBar, changeStatusBar] = useState(setStatusBar('#5F9B42', 'light-content', true, false));
   const initialLoginState = { isLoading: true, userToken: null, userName: null, isIntroDone: false }
 
   useEffect(() => {
