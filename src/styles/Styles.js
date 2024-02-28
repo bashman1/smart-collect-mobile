@@ -62,7 +62,7 @@ export const styles = StyleSheet.create(
             width: '100%',
             alignItems: 'center',
             justifyContent: 'center',
-            height: 50,
+            height: 45,
             borderRadius: 5,
             backgroundColor: '#5F9B42'
         },
@@ -363,7 +363,10 @@ export const styles = StyleSheet.create(
         },
         selectTextColor:{
             color:"#000"
-        }
+        },
+
+
+      
 
     }
 )

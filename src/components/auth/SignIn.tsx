@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from 'react';
-import { View, Text, Image, TouchableOpacity, ScrollView, Animated, StatusBar } from 'react-native';
+import { View, Text, Image, TouchableOpacity, ScrollView, Animated, StatusBar, Appearance } from 'react-native';
 import { styles } from '../../styles/Styles';
 import { TextInput } from 'react-native-paper';
 import { validatePhone, mailValidation, showToast, createAlert, showLoading, localNotification } from '../../services/CommonService';
@@ -123,7 +123,7 @@ const SignIn = (props: any) => {
                 <View style={styles.marginBottom}>
                     <TextInput label="Password" mode='outlined'  placeholder="Password"
                         onChangeText={(password:any) => setPassword(password)} secureTextEntry={show_password}
-                        right={<TextInput.Icon icon={() => <IonIcon name={password_icon} size={30} onPress={seePassword} />}
+                        right={<TextInput.Icon icon={() => <IonIcon color={(Appearance.getColorScheme() === 'dark')?'#000':''} name={password_icon} size={30} onPress={seePassword} />}
                          />}
                     />
                 </View>

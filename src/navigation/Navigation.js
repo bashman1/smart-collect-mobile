@@ -58,7 +58,7 @@ export const badgedIcon = (props) => {
 export const IntroScreen = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Navigator screenOptions={{ headerShown: false, navigationBarColor: '#fff' }}>
                 <Stack.Screen name="IntroSlider" component={IntroSlider} />
             </Stack.Navigator>
         </NavigationContainer>
@@ -69,7 +69,7 @@ export const IntroScreen = () => {
 export const AuthScreen = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Navigator screenOptions={{ headerShown: false, navigationBarColor: '#fff' }}>
                 {/* <Stack.Screen name="IntroSlider" component={IntroSlider} /> */}
                 <Stack.Screen name="SignIn" component={SignIn} />
                 {/* <Stack.Screen name="SignUp" component={SignUp} /> */}
@@ -81,8 +81,8 @@ export const AuthScreen = () => {
 
 export const MainScreen =()=>{
     return(
-        <NavigationContainer>
-            <Drawer.Navigator  drawerContent={props => <SideMenu {...props} />}>
+        <NavigationContainer >
+            <Drawer.Navigator  screenOptions={{navigationBarColor: '#fff'}} drawerContent={props => <SideMenu {...props} />}>
                 <Drawer.Screen name="Home" component={Home} options={navLayout("Home")} />
                 <Drawer.Screen name="CreateItem" component={CreateItem} options={navLayout("Create Item")} />
                 <Drawer.Screen name="PointOfSale" component={PointOfSale} options={navLayout("Point Of Sale")} />
