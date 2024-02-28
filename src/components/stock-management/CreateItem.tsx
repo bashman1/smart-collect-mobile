@@ -24,7 +24,13 @@ const CreateItem = (props: any) => {
     const [selected, setSelected] = React.useState("");
 
 
-    const [visible, setVisible] = React.useState(false);
+    const [typeModal, setVisible] = React.useState(false);
+    const [carModal, setCatModal] = React.useState(false);
+    const [subCarModal, setSubCatModal] = React.useState(false);
+    const [gaugeModal, setGaugeModal] = React.useState(false);
+    const [subManufactureModal, setManufacturerModal] = React.useState(false);
+    const [supplierModal, setSupplierModal] = React.useState(false);
+    const [unitModal, setUnitModal] = React.useState(false);
 
     const showModal = () => setVisible(true);
     const hideModal = () => setVisible(false);
@@ -132,8 +138,8 @@ const CreateItem = (props: any) => {
     const lightTheme = {
         ...DefaultTheme,
         mode: 'light',
-      };
-    
+    };
+
 
     useEffect(() => {
         GenericQueryAll(LoggedInUser).then((results) => {
@@ -154,7 +160,7 @@ const CreateItem = (props: any) => {
                         <TextInput label="Name" mode='outlined' placeholder="Name" onChangeText={(name: any) => setName(name)} />
                     </View>
                     <View style={[styles.marginBottom, styles.row]}>
-                        <View style={{ flex: 0.9 }}>
+                        <View style={styles.flex09}>
                             <SelectList
                                 setSelected={(val: any) => setType(val)}
                                 data={data}
@@ -165,67 +171,102 @@ const CreateItem = (props: any) => {
                                 dropdownTextStyles={styles.selectTextColor}
                             />
                         </View>
-                        <View style={{ flex: 0.1 }}>
+                        <View style={styles.flex01}>
                             <TouchableOpacity style={styles.touchableButton} onPress={showModal}>
                                 <IonIcon color="#fff" name="add" size={20} />
                             </TouchableOpacity>
                         </View>
 
                     </View>
-                    <View style={styles.marginBottom}>
-                        <SelectList
-                            setSelected={(val: any) => setCategory(val)}
-                            data={data}
-                            save="value"
-                            placeholder="Category"
-                            inputStyles={styles.selectTextColor}
-                            boxStyles={styles.selectStyle}
-                            dropdownTextStyles={styles.selectTextColor}
-                        />
+                    <View style={[styles.marginBottom, styles.row]}>
+                        <View style={styles.flex09}>
+                            <SelectList
+                                setSelected={(val: any) => setCategory(val)}
+                                data={data}
+                                save="value"
+                                placeholder="Category"
+                                inputStyles={styles.selectTextColor}
+                                boxStyles={styles.selectStyle}
+                                dropdownTextStyles={styles.selectTextColor}
+                            />
+                        </View>
+                        <View style={styles.flex01}>
+                            <TouchableOpacity style={styles.touchableButton} onPress={() => setCatModal(true)}>
+                                <IonIcon color="#fff" name="add" size={20} />
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                    <View style={styles.marginBottom}>
-                        <SelectList
-                            setSelected={(val: any) => setSubCategory(val)}
-                            data={data}
-                            save="value"
-                            placeholder="Sub Category"
-                            inputStyles={styles.selectTextColor}
-                            boxStyles={styles.selectStyle}
-                            dropdownTextStyles={styles.selectTextColor}
-                        />
+                    <View style={[styles.marginBottom, styles.row]}>
+                        <View style={styles.flex09}>
+                            <SelectList
+                                setSelected={(val: any) => setSubCategory(val)}
+                                data={data}
+                                save="value"
+                                placeholder="Sub Category"
+                                inputStyles={styles.selectTextColor}
+                                boxStyles={styles.selectStyle}
+                                dropdownTextStyles={styles.selectTextColor}
+                            />
+                        </View>
+                        <View style={styles.flex01}>
+                            <TouchableOpacity style={styles.touchableButton} onPress={() => setSubCatModal(true)}>
+                                <IonIcon color="#fff" name="add" size={20} />
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                    <View style={styles.marginBottom}>
-                        <SelectList
-                            setSelected={(val: any) => setGauge(val)}
-                            data={data}
-                            save="value"
-                            placeholder="Gauge"
-                            inputStyles={styles.selectTextColor}
-                            boxStyles={styles.selectStyle}
-                            dropdownTextStyles={styles.selectTextColor}
-                        />
+                    <View style={[styles.marginBottom, styles.row]}>
+                        <View style={styles.flex09}>
+                            <SelectList
+                                setSelected={(val: any) => setGauge(val)}
+                                data={data}
+                                save="value"
+                                placeholder="Gauge"
+                                inputStyles={styles.selectTextColor}
+                                boxStyles={styles.selectStyle}
+                                dropdownTextStyles={styles.selectTextColor}
+                            />
+                        </View>
+                        <View style={styles.flex01}>
+                            <TouchableOpacity style={styles.touchableButton} onPress={() => setGaugeModal(true)}>
+                                <IonIcon color="#fff" name="add" size={20} />
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                    <View style={styles.marginBottom}>
-                        <SelectList
-                            setSelected={(val: any) => setManufacturer(val)}
-                            data={data}
-                            save="value"
-                            placeholder="Manufacturer"
-                            inputStyles={styles.selectTextColor}
-                            boxStyles={styles.selectStyle}
-                            dropdownTextStyles={styles.selectTextColor}
-                        />
+                    <View style={[styles.marginBottom, styles.row]}>
+                        <View style={styles.flex09}>
+                            <SelectList
+                                setSelected={(val: any) => setManufacturer(val)}
+                                data={data}
+                                save="value"
+                                placeholder="Manufacturer"
+                                inputStyles={styles.selectTextColor}
+                                boxStyles={styles.selectStyle}
+                                dropdownTextStyles={styles.selectTextColor}
+                            />
+                        </View>
+                        <View style={styles.flex01}>
+                            <TouchableOpacity style={styles.touchableButton} onPress={() => setManufacturerModal(true)}>
+                                <IonIcon color="#fff" name="add" size={20} />
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                    <View style={styles.marginBottom}>
-                        <SelectList
-                            setSelected={(val: any) => setSupplier(val)}
-                            data={data}
-                            save="value"
-                            placeholder="Supplier"
-                            inputStyles={styles.selectTextColor}
-                            boxStyles={styles.selectStyle}
-                            dropdownTextStyles={styles.selectTextColor}
-                        />
+                    <View style={[styles.marginBottom, styles.row]}>
+                        <View style={styles.flex09}>
+                            <SelectList
+                                setSelected={(val: any) => setSupplier(val)}
+                                data={data}
+                                save="value"
+                                placeholder="Supplier"
+                                inputStyles={styles.selectTextColor}
+                                boxStyles={styles.selectStyle}
+                                dropdownTextStyles={styles.selectTextColor}
+                            />
+                        </View>
+                        <View style={styles.flex01}>
+                            <TouchableOpacity style={styles.touchableButton} onPress={() => setSupplierModal(true)}>
+                                <IonIcon color="#fff" name="add" size={20} />
+                            </TouchableOpacity>
+                        </View>
                     </View>
                     <View style={styles.marginBottom}>
                         <TextInput label="Product Id" mode='outlined' placeholder="Product Id" onChangeText={(prodNo: any) => setProductNo(prodNo)} />
@@ -237,16 +278,23 @@ const CreateItem = (props: any) => {
                     <View style={styles.marginBottom}>
                         <TextInput label="Quantity" mode='outlined' placeholder="Quantity" onChangeText={(qty: any) => setQuantity(qty)} />
                     </View>
-                    <View style={styles.marginBottom}>
-                        <SelectList
-                            setSelected={(val: any) => setUnit(val)}
-                            data={data}
-                            save="value"
-                            placeholder="Measurement Unit"
-                            inputStyles={styles.selectTextColor}
-                            boxStyles={styles.selectStyle}
-                            dropdownTextStyles={styles.selectTextColor}
-                        />
+                    <View style={[styles.marginBottom, styles.row]}>
+                        <View style={styles.flex09}>
+                            <SelectList
+                                setSelected={(val: any) => setUnit(val)}
+                                data={data}
+                                save="value"
+                                placeholder="Measurement Unit"
+                                inputStyles={styles.selectTextColor}
+                                boxStyles={styles.selectStyle}
+                                dropdownTextStyles={styles.selectTextColor}
+                            />
+                        </View>
+                        <View style={styles.flex01}>
+                            <TouchableOpacity style={styles.touchableButton} onPress={() => setUnitModal(true)}>
+                                <IonIcon color="#fff" name="add" size={20} />
+                            </TouchableOpacity>
+                        </View>
                     </View>
                     <View style={styles.marginBottom}>
                         <TextInput label="Min Stock" mode='outlined' placeholder="Min stock" onChangeText={(min: any) => setMinStock(min)} />
@@ -292,13 +340,143 @@ const CreateItem = (props: any) => {
                     {/* Modals starts here  */}
                     <View>
                         <Portal>
-                            <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
+                            <Modal visible={typeModal} onDismiss={hideModal} contentContainerStyle={containerStyle}>
                                 <Text>Create Product Type.</Text>
                                 <View style={styles.marginBottom}>
                                     <TextInput label="Name" mode='outlined' placeholder="Name" onChangeText={(name: any) => setName(name)} />
                                 </View>
                                 <View style={styles.marginBottom}>
-                                    <TextInput label="Description" mode='outlined' placeholder="Name" onChangeText={(name: any) => setName(name)} />
+                                    <TextInput label="Description" mode='outlined' placeholder="Description" onChangeText={(name: any) => setName(name)} />
+                                </View>
+                                <View style={styles.marginBottom}>
+                                    <TouchableOpacity style={styles.touchableButton} onPress={() => { searchFromServer() }}>
+                                        <Text style={styles.healthPalWhite}>Submit</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </Modal>
+                            <Modal visible={carModal} onDismiss={() => setCatModal(false)} contentContainerStyle={containerStyle}>
+                                <Text>Create Product Category.</Text>
+                                <View style={styles.marginBottom}>
+                                    <TextInput label="Name" mode='outlined' placeholder="Name" onChangeText={(name: any) => setName(name)} />
+                                </View>
+                                <View style={styles.marginBottom}>
+                                    <TextInput label="Description" mode='outlined' placeholder="Description" onChangeText={(name: any) => setName(name)} />
+                                </View>
+                                <View style={styles.marginBottom}>
+                                    <TouchableOpacity style={styles.touchableButton} onPress={() => { searchFromServer() }}>
+                                        <Text style={styles.healthPalWhite}>Submit</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </Modal>
+                            <Modal visible={subCarModal} onDismiss={() => setSubCatModal(false)} contentContainerStyle={containerStyle}>
+                                <Text>Create Product Sub Category.</Text>
+                                <View style={styles.marginBottom}>
+                                    <TextInput label="Name" mode='outlined' placeholder="Name" onChangeText={(name: any) => setName(name)} />
+                                </View>
+                                <View style={styles.marginBottom}>
+                                    <TextInput label="Description" mode='outlined' placeholder="Description" onChangeText={(name: any) => setName(name)} />
+                                </View>
+                                <View style={styles.marginBottom}>
+                                    <TouchableOpacity style={styles.touchableButton} onPress={() => { searchFromServer() }}>
+                                        <Text style={styles.healthPalWhite}>Submit</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </Modal>
+                            <Modal visible={gaugeModal} onDismiss={() => setGaugeModal(false)} contentContainerStyle={containerStyle}>
+                                <Text>Create Product Gauge.</Text>
+                                <View style={styles.marginBottom}>
+                                    <TextInput label="Name" mode='outlined' placeholder="Name" onChangeText={(name: any) => setName(name)} />
+                                </View>
+                                <View style={styles.marginBottom}>
+                                    <TextInput label="Description" mode='outlined' placeholder="Description" onChangeText={(name: any) => setName(name)} />
+                                </View>
+                                <View style={styles.marginBottom}>
+                                    <TouchableOpacity style={styles.touchableButton} onPress={() => { searchFromServer() }}>
+                                        <Text style={styles.healthPalWhite}>Submit</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </Modal>
+                            <Modal visible={subManufactureModal} onDismiss={() => setManufacturerModal(false)} contentContainerStyle={containerStyle}>
+                                <Text>Create Product Manufacturer.</Text>
+                                <View style={styles.marginBottom}>
+                                    <TextInput label="Name" mode='outlined' placeholder="Name" onChangeText={(name: any) => setName(name)} />
+                                </View>
+                                <View style={styles.marginBottom}>
+                                    <SelectList
+                                        setSelected={(val: any) => setUnit(val)}
+                                        data={data}
+                                        save="value"
+                                        placeholder="Country"
+                                        inputStyles={styles.selectTextColor}
+                                        boxStyles={styles.selectStyle}
+                                        dropdownTextStyles={styles.selectTextColor}
+                                    />
+                                </View>
+                                <View style={styles.marginBottom}>
+                                    <TextInput label="Email" mode='outlined' placeholder="Email" onChangeText={(name: any) => setName(name)} />
+                                </View>
+                                <View style={styles.marginBottom}>
+                                    <TextInput label="Address" mode='outlined' placeholder="Address" onChangeText={(name: any) => setName(name)} />
+                                </View>
+                                <View style={styles.marginBottom}>
+                                    <TextInput label="Website" mode='outlined' placeholder="Website" onChangeText={(name: any) => setName(name)} />
+                                </View>
+                                <View style={styles.marginBottom}>
+                                    <TextInput label="Phone No." mode='outlined' placeholder="Phone No." onChangeText={(name: any) => setName(name)} />
+                                </View>
+                                <View style={styles.marginBottom}>
+                                    <TextInput label="Description" mode='outlined' placeholder="Description" onChangeText={(name: any) => setName(name)} />
+                                </View>
+                                <View style={styles.marginBottom}>
+                                    <TouchableOpacity style={styles.touchableButton} onPress={() => { searchFromServer() }}>
+                                        <Text style={styles.healthPalWhite}>Submit</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </Modal>
+                            <Modal visible={supplierModal} onDismiss={() => setSupplierModal(false)} contentContainerStyle={containerStyle}>
+                                <Text>Create Product Supplier.</Text>
+                                <View style={styles.marginBottom}>
+                                    <TextInput label="Name" mode='outlined' placeholder="Name" onChangeText={(name: any) => setName(name)} />
+                                </View>
+                                <View style={styles.marginBottom}>
+                                    <SelectList
+                                        setSelected={(val: any) => setUnit(val)}
+                                        data={data}
+                                        save="value"
+                                        placeholder="Country"
+                                        inputStyles={styles.selectTextColor}
+                                        boxStyles={styles.selectStyle}
+                                        dropdownTextStyles={styles.selectTextColor}
+                                    />
+                                </View>
+                                <View style={styles.marginBottom}>
+                                    <TextInput label="Email" mode='outlined' placeholder="Email" onChangeText={(name: any) => setName(name)} />
+                                </View>
+                                <View style={styles.marginBottom}>
+                                    <TextInput label="Address" mode='outlined' placeholder="Address" onChangeText={(name: any) => setName(name)} />
+                                </View>
+                                <View style={styles.marginBottom}>
+                                    <TextInput label="Website" mode='outlined' placeholder="Website" onChangeText={(name: any) => setName(name)} />
+                                </View>
+                                <View style={styles.marginBottom}>
+                                    <TextInput label="Phone No." mode='outlined' placeholder="Phone No." onChangeText={(name: any) => setName(name)} />
+                                </View>
+                                <View style={styles.marginBottom}>
+                                    <TextInput label="Description" mode='outlined' placeholder="Description" onChangeText={(name: any) => setName(name)} />
+                                </View>
+                                <View style={styles.marginBottom}>
+                                    <TouchableOpacity style={styles.touchableButton} onPress={() => { searchFromServer() }}>
+                                        <Text style={styles.healthPalWhite}>Submit</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </Modal>
+                            <Modal visible={unitModal} onDismiss={() => setUnitModal(false)} contentContainerStyle={containerStyle}>
+                                <Text>Create Product Unit.</Text>
+                                <View style={styles.marginBottom}>
+                                    <TextInput label="Name" mode='outlined' placeholder="Name" onChangeText={(name: any) => setName(name)} />
+                                </View>
+                                <View style={styles.marginBottom}>
+                                    <TextInput label="Description" mode='outlined' placeholder="Description" onChangeText={(name: any) => setName(name)} />
                                 </View>
                                 <View style={styles.marginBottom}>
                                     <TouchableOpacity style={styles.touchableButton} onPress={() => { searchFromServer() }}>

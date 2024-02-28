@@ -364,6 +364,12 @@ export const styles = StyleSheet.create(
         selectTextColor:{
             color:"#000"
         },
+        flex09:{
+            flex:0.9
+        },      
+        flex01:{
+            flex:0.1
+        }
 
 
       
