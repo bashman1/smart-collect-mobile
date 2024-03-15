@@ -2,6 +2,7 @@ import Realm from "realm";
 
 export const LoggedInUser = 'LoggedInUser';
 export const System = 'System';
+export const MyCart= 'MyCart';
 
 export const LoggedInUserSchema = {
     name: LoggedInUser,
@@ -38,9 +39,31 @@ export const SystemSchema ={
     }
 }
 
+export const CartSchema = {
+    name: MyCart,
+    primaryKey:'id',
+    properties:{
+        id: 'int',
+        name: {type: 'string', optional: true},
+        price: {type: 'double', optional:true},
+        quantity: {type: 'double', optional:true},
+        subtotal: {type: 'float'},
+        tableId: 'int'
+    }
+}
+
+// export const CartItemsSchema={
+//     name: CartItems,
+//     primaryKey:'tableId',
+//     id: 'int',
+//     name: {type: 'string', optional: true},
+//     price: {type: 'double', optional:true},
+//     tableId: 'int'
+// }
+
 const databaseOptions ={
     path: 'smart_collect.realm',
-    schema: [SystemSchema, LoggedInUserSchema],
+    schema: [SystemSchema, LoggedInUserSchema, CartSchema],
     schemaVersion: 0,
 }
 
@@ -112,7 +135,7 @@ export const GenericQueryWhere = (schema, filters) => new Promise((resolve, reje
 export const GenericCartUpdate = (schema, item, action) => new Promise((resolve, reject)=>{
     Realm.open(databaseOptions).then(realm=>{
         realm.write(()=>{
-            let updatingCart = realm.objectForPrimaryKey(schema, item.tableId);
+            let updatingCart = realm.objectForPrimaryKey(schema, item.id);
             if(action == 'ADD'){
                 updatingCart.quantity = item.quantity +1;
             }else if(action == 'REMOVE'){

@@ -368,10 +368,82 @@ export const styles = StyleSheet.create(
             flex:0.9
         },      
         flex01:{
-            flex:0.1
-        }
+            flex:0.1,
+            paddingLeft:2
+        },
+        flex06:{
+            flex:0.6
+        },
+        flex04:{
+            flex:0.6,
+            paddingLeft:2
+        },
+        flex03:{
+            flex:0.3
+        },
+        flex07:{
+            flex:0.7
+        },
+        flex05:{
+            flex:0.5
+        },
 
-
+        // cart css 
+        container: {
+            flex: 1,
+            padding: 20,
+        },
+        title: {
+            fontSize: 24,
+            fontWeight: 'bold',
+            marginBottom: 20,
+        },
+        item: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: 10,
+        },
+        itemName: {
+            fontSize: 16,
+            fontWeight: 'bold',
+        },
+        itemPrice: {
+            fontSize: 14,
+            marginBottom: 5,
+        },
+        quantityInput: {
+            backgroundColor: '#f0f0f0',
+            paddingHorizontal: 12,
+            paddingVertical: 8,
+            borderRadius: 5,
+            textAlign: 'center',
+            minWidth: 40,
+            marginBottom: 5,
+        },
+        subtotal: {
+            fontWeight: 'bold',
+        },
+        itemActions: {},
+        actionButton: {
+            backgroundColor: 'red',
+            paddingHorizontal: 12,
+            paddingVertical: 8,
+            borderRadius: 5,
+        },
+        actionButtonText: {
+            color: 'white',
+            fontWeight: 'bold',
+        },
+        emptyText: {
+            textAlign: 'center',
+        },
+        total: {
+            textAlign: 'right',
+            marginTop: 20,
+            fontSize: 18,
+            fontWeight: 'bold',
+        },
       
 
     }

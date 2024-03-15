@@ -3,6 +3,7 @@ import { View, Text, Alert, StatusBar, Platform } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import PushNotification from "react-native-push-notification";
 import NetInfo from "@react-native-community/netinfo";
+import Toast from 'react-native-toast-message';
 
 
 export const createAlert = (title, message) =>
@@ -70,7 +71,12 @@ export const logout = (props) => {
 
 
 export const showToast = (message) => {
-    ToastAndroid.show(message, ToastAndroid.LONG, ToastAndroid.BOTTOM, 25, 50);
+    // ToastAndroid.show(message, ToastAndroid.LONG, ToastAndroid.BOTTOM, 25, 50);
+    Toast.show({
+        type: 'success',
+        text1: 'Success',
+        text2: message+' 👋'
+      });
 };
 
 export const CheckConnectivity = () => {

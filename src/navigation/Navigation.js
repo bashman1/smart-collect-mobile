@@ -9,11 +9,13 @@ import IntroSlider from '../components/intro/IntroSlider';
 import SignIn from '../components/auth/SignIn'
 import Home from '../components/main/Home';
 import CreateItem from '../components/stock-management/CreateItem';
+import ViewItems from '../components/stock-management/ViewItems';
 import PointOfSale from '../components/stock-management/PointOfSale';
 import Orders from '../components/stock-management/Orders';
 import Sales from '../components/stock-management/Sales';
 import Settings from '../components/stock-management/Sales';
 import NotificationList from '../components/notifications/NotificationList';
+import Cart from '../components/stock-management/Cart';
 import { styles } from '../styles/Styles';
 import { Badge } from 'react-native-paper';
 import IonIcon from 'react-native-vector-icons/Ionicons';
@@ -23,7 +25,7 @@ import { SideMenu } from './SideMenu';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
-export const navLayout = (header) => {
+export const navLayout = (header, navigation) => {
     return (
         {
             headerShown: true,
@@ -39,7 +41,7 @@ export const navLayout = (header) => {
                 width: '100%',
                 textAlign: 'center',
             },
-            headerRight: () => badgedIcon()
+            headerRight: () => badgedIcon(navigation)
         }
     )
 }
@@ -47,9 +49,9 @@ export const navLayout = (header) => {
 export const badgedIcon = (props) => {
 
     return (
-        <TouchableOpacity style={[styles.rows, styles.navIconStyle]}  onPress={() => { props.navigation.navigate("NotificationList") }}>
-            <IonIcon size={25} color="#fff" name="notifications" />
-            <Badge styles={styles.badge}>0</Badge>
+        <TouchableOpacity style={[styles.rows, styles.navIconStyle]}  onPress={() => { props.navigate('Cart')}}>
+            <IonIcon size={25} color="#fff" name="cart" />
+            {/* <Badge styles={styles.badge}>0</Badge> */}
         </TouchableOpacity>
     )
 }
@@ -79,17 +81,21 @@ export const AuthScreen = () => {
     );
 }
 
+
+
 export const MainScreen =()=>{
     return(
         <NavigationContainer >
             <Drawer.Navigator  screenOptions={{navigationBarColor: '#fff'}} drawerContent={props => <SideMenu {...props} />}>
-                <Drawer.Screen name="Home" component={Home} options={navLayout("Home")} />
-                <Drawer.Screen name="CreateItem" component={CreateItem} options={navLayout("Create Item")} />
-                <Drawer.Screen name="PointOfSale" component={PointOfSale} options={navLayout("Point Of Sale")} />
-                <Drawer.Screen name="Orders" component={Orders} options={navLayout("Orders")} />
-                <Drawer.Screen name="Sales" component={Sales} options={navLayout("Sales")} />
-                <Drawer.Screen name="Settings" component={Settings} options={navLayout("Settings")} />
-                <Drawer.Screen name="NotificationList" component={NotificationList} options={navLayout("NotificationList")} />
+                <Drawer.Screen name="Home" component={Home} options={({ navigation })=>navLayout("Home", navigation)} />
+                <Drawer.Screen name="CreateItem" component={CreateItem} options={({ navigation })=>navLayout("Create Item", navigation)} />
+                <Drawer.Screen name="PointOfSale" component={PointOfSale} options={({ navigation })=>navLayout("Point Of Sale", navigation)} />
+                <Drawer.Screen name="Orders" component={Orders} options={({ navigation })=>navLayout("Orders", navigation)} />
+                <Drawer.Screen name="Sales" component={Sales} options={({ navigation })=>navLayout("Sales", navigation)} />
+                <Drawer.Screen name="Settings" component={Settings} options={({ navigation })=>navLayout("Settings", navigation)} />
+                <Drawer.Screen name="NotificationList" component={NotificationList} options={({ navigation })=>navLayout("NotificationList", navigation)} />
+                <Drawer.Screen name="ViewItem" component={ViewItems} options={({ navigation })=>navLayout("Product List", navigation)} />
+                <Drawer.Screen name="Cart" component={Cart} options={({ navigation })=>navLayout("Check Out", navigation)} key={Math.floor(Date.now() / 1000)} />
 
                 
             </Drawer.Navigator>

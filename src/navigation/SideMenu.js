@@ -20,20 +20,11 @@ export function SideMenu(props) {
 
         GenericQueryAll(LoggedInUser).then((results) => {
             setUerData(results[0])
-            // alert(JSON.stringify(results))
         }).catch((error) => { alert(JSON.stringify(error)) });
 
     }, []);
 
-
-    // const userData = //useSelector(state => state.userDataReducer.userDataList[0])
     const { signOut } = React.useContext(AuthContext);
-
-
-    const test = () => {
-        // createAlert(JSON.stringify(userData))
-        alert(JSON.stringify(userData));
-    }
 
     const [isDarkTheme, setIsDarkTheme] = React.useState(false);
     const toggleTheme = () => {
@@ -134,7 +125,7 @@ export function SideMenu(props) {
                             onPress={() => { test() }}
                         /> */}
 
-                        {/* <DrawerItem
+                        <DrawerItem
                             icon={({ color, size }) => (
                                 <IonIcon
                                     name="swap-horizontal-outline"
@@ -142,9 +133,12 @@ export function SideMenu(props) {
                                     size={size}
                                 />
                             )}
-                            label="Transactions"
-                            onPress={() => { props.navigation.navigate("Calender") }}
-                        /> */}
+                            label="Products"
+                            onPress={() => { props.navigation.navigate("ViewItem") }}
+                        />
+
+                        
+
 
                         <DrawerItem
                             icon={({ color, size }) => (

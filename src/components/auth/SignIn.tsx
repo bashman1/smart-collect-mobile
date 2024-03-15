@@ -91,11 +91,10 @@ const SignIn = (props: any) => {
                     userType:data?.data?.user_data?.user_type
                 }
                 submitUserData(databaseData);
-                
                 GenericInsert(LoggedInUser, databaseData).then((loggedInUser) => {
-                    createAlert("Inserted","")
                 }).catch((error) => {
-                    createAlert('error', error)
+                    createAlert('error', 'error')
+                   
                 })
                 signIn();
             }else{
