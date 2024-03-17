@@ -14,11 +14,12 @@ import Toast from 'react-native-toast-message';
 import { useFocusEffect } from '@react-navigation/native';
 
 const Cart = (props: any) => {
-
     const [userData, setUerData] = useState({});
     const [cartData, setCartData] = useState([]);
-    const [discount, setDiscount] = useState(1);
+    const [discount, setDiscount] = useState(0);
+    const [amount, setAmount] = useState(0);
     const [total, setTotal] = useState(0);
+
 
     useEffect(() => {
         initialLoading();
@@ -50,7 +51,7 @@ const Cart = (props: any) => {
         cartData.forEach(element => {
             total = (total + (element.quantity * element.price))
         });
-        setTotal(total-discount);
+        setTotal(total - discount);
     }
 
     const addQuantity = (cart) => {
@@ -71,155 +72,39 @@ const Cart = (props: any) => {
         }).catch((error) => { console.log(error) });
     }
 
+    const onSubmit=()=>{
+        let postData ={
+            total:total,
+            discount: discount,
+            amountPaid: Number(amount),
+            itemCount: cartData.length,
+            tranDate: new Date(),
+            items: cartData,
+            status: "Active"
+        }
 
+        postToServerWithToken('create-order', postData, "POST", userData?.token)?.then((data: any) => {
+            console.log(data);
+            if (data.status) {
+                GenericDeleteAll(MyCart).then((results)=>{
+                    initialLoading();
+                }).catch((error)=> console.log(error))
+            } else {
 
-    const renderItems = ({ item }) => {
-        return (
-            <View>
-                <View style={{ marginHorizontal: 15 }}>
-                    <View style={{ flexDirection: 'row', paddingVertical: 10, display: 'flex' }}>
-                        <View style={{ backgroundColor: '#fff', borderRadius: 3, justifyContent: 'center', alignItems: 'center' }}>
-                            <Image source={require('../../assets/flickr-marco-verch.jpg')} style={{ width: 80, height: 80 }} resizeMode='contain' />
-                        </View>
-                        <View style={{ paddingLeft: 10, paddingVertical: 5, justifyContent: 'space-between' }}>
-                            <Text style={{ fontSize: 20, fontWeight: 'bold', fontStyle: 'italic' }}>{item.name}</Text>
-                            <Text style={{ fontSize: 25, fontWeight: '', marginBottom: 10 }}>UGX {item.price}</Text>
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                                <View style={{ flexDirection: 'row', width: '50%', justifyContent: 'space-between' }}>
-                                    <TouchableOpacity style={styles.buttonCircle} onPress={() => { reduceQuantity(item) }}>
-                                        <IonIcon name="remove" color={'#263776'} size={20} />
-                                    </TouchableOpacity>
-                                    <View style={{ with: 10, marginTop: 10 }}>
-                                        <Text>{item.quantity}</Text>
-                                    </View>
-                                    <TouchableOpacity style={styles.buttonCircle} onPress={() => { addQuantity(item) }}>
-                                        <IonIcon name="add" color={'#263776'} size={20} />
-                                    </TouchableOpacity>
-                                </View>
-                                <TouchableOpacity style={styles.buttonCircle} onPress={() => { deleteItem(item) }}>
-                                    <IonIcon name="trash-outline" color={'#e60000'} size={20} />
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)', height: 1, width: '100%' }} />
-                </View>
+            }
+        }).catch(err => {
 
-            </View>
-        )
+        })
     }
 
-
-
-
-
-
-
-
-    // const addToCart = (product) => {
-    //     const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
-    //     if (existingItemIndex !== -1) {
-    //         const updatedCartItems = [...cartItems];
-    //         updatedCartItems[existingItemIndex].quantity += 1;
-    //         setCartItems(updatedCartItems);
-    //     } else {
-    //         setCartItems([...cartItems, { ...product, quantity: 1 }]);
-    //     }
-    // };
-
-    // const removeFromCart = (product) => {
-    //     const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
-    //     if (existingItemIndex !== -1) {
-    //         const updatedCartItems = [...cartItems];
-    //         updatedCartItems.splice(existingItemIndex, 1);
-    //         setCartItems(updatedCartItems);
-    //     }
-
-    //     GenericDelete(MyCart, product.id).then((results)=>{
-    //         createAlert("Deleted", product.name+" deleted successfully")
-    //     }).catch((error)=>{
-
-    //     })
-    // };
-
-    // const updateQuantity = (text, product) => {
-    //     const quantity = parseInt(text, 10);
-    //     if (!isNaN(quantity) && quantity >= 0) {
-    //         const updatedCartItems = cartItems.map(item => {
-    //             if (item.id === product.id) {
-    //                 return { ...item, quantity };
-    //             }
-    //             return item;
-    //         });
-    //         setCartItems(updatedCartItems);
-    //     }
-    // };
-
-    // const renderItem = ({ item }) => (
-    //     <View style={styles.item}>
-    //         <View style={styles.itemDetails}>
-    //             <Text style={styles.itemName}>{item.name}</Text>
-    //             <Text style={styles.itemPrice}>Price: ${item.price}</Text>
-    //             <View style={styles.quantityContainer}>
-    //                 <TouchableOpacity onPress={() => updateQuantity(item.quantity - 1, item)} style={styles.quantityButton}>
-    //                     <Text style={styles.quantityButtonText}>-</Text>
-    //                 </TouchableOpacity>
-    //                 <TextInput
-    //                     style={styles.quantityInput}
-    //                     value={item.quantity.toString()}
-    //                     onChangeText={(text) => updateQuantity(text, item)}
-    //                     keyboardType="numeric"
-    //                 />
-    //                 <TouchableOpacity onPress={() => updateQuantity(item.quantity + 1, item)} style={styles.quantityButton}>
-    //                     <Text style={styles.quantityButtonText}>+</Text>
-    //                 </TouchableOpacity>
-    //             </View>
-    //             <Text style={styles.subtotal}>Subtotal: ${(item.price * item.quantity).toFixed(2)}</Text>
-    //         </View>
-    //         <View style={styles.itemActions}>
-    //             <TouchableOpacity style={styles.actionButton} onPress={() => removeFromCart(item)}>
-    //                 <Text style={styles.actionButtonText}>Remove</Text>
-    //             </TouchableOpacity>
-    //         </View>
-    //     </View>
-    // );
-
-
-    // const total = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-
-
     return (
-
-        // <ScrollView style={styles.backgroundWhite}>
-        //     <View style={[styles.padding]}>
-        //         <View style={styles.container}>
-        //             <Text style={styles.title}>Shopping Cart</Text>
-        //             <FlatList
-        //                 data={cartItems}
-        //                 renderItem={renderItem}
-        //                 keyExtractor={(item) => item.id.toString()}
-        //                 ListEmptyComponent={<Text style={styles.emptyText}>Your cart is empty</Text>}
-        //             />
-        //             <Text style={styles.total}>Total: ${total.toFixed(2)}</Text>
-        //         </View>
-        //     </View>
-        // </ScrollView>
-
-        <ScrollView>
-            <View >
+        <ScrollView >
+            <View style={[styles.padding]}>
                 <View >
-                    <View style={[styles.marginBottom10, styles.padding10]}>
-                        {/* <FlatList
-                        data={cartData}
-                        renderItem={renderItems}
-                        keyExtractor={(item) => item.tableId.toString()}
-                    /> */}
+                    <View style={[styles.marginBottom10, styles.padding10, styles.backgroundWhite]}>
                         {cartData.map((item, index) => (
                             <View style={{ marginHorizontal: 15 }}>
                                 <View style={{ flexDirection: 'row', paddingVertical: 10, display: 'flex' }}>
-                                    {/* <View style={{ backgroundColor: '#fff', borderRadius: 3, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Image source={require('../../assets/flickr-marco-verch.jpg')} style={{ width: 80, height: 80 }} resizeMode='contain' />
-                                    </View> */}
                                     <View style={{ paddingLeft: 10, paddingVertical: 5, justifyContent: 'space-between' }}>
                                         <Text style={{ fontSize: 20, fontWeight: 'bold', fontStyle: 'italic' }}>{item.name}</Text>
                                         <Text style={{ fontSize: 25, fontWeight: '', marginBottom: 10 }}>UGX {item.price}</Text>
@@ -252,8 +137,14 @@ const Cart = (props: any) => {
 
                             <Text style={{ fontSize: 30 }}> UGX {total}</Text>
                         </View>
+                        <View style={styles.marginBottom}>
+                            <TextInput keyboardType='numeric' label="Discount" mode='outlined' placeholder="0" onChangeText={(discount: any) => {setDiscount(discount); calculateTotal(cartData)}} />
+                        </View>
+                        <View style={styles.marginBottom}>
+                            <TextInput keyboardType='numeric' label="Amount" mode='outlined' placeholder="0" onChangeText={(amount: any) => setAmount(amount)} />
+                        </View>
                         <View style={styles.padding}>
-                            <TouchableOpacity style={[styles.touchableButton]}>
+                            <TouchableOpacity style={[styles.touchableButton]} onPress={onSubmit}>
                                 <Text style={styles.healthPalWhite}>Checkout</Text>
                             </TouchableOpacity>
                         </View>

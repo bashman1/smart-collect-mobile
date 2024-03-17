@@ -444,7 +444,15 @@ export const styles = StyleSheet.create(
             fontSize: 18,
             fontWeight: 'bold',
         },
-      
+        container: {
+            flex: 1,
+            padding: 24,
+            backgroundColor: 'grey',
+          },
+          contentContainer: {
+            flex: 1,
+            alignItems: 'center',
+          },
 
     }
 )

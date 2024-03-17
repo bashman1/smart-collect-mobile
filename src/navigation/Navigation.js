@@ -95,9 +95,7 @@ export const MainScreen =()=>{
                 <Drawer.Screen name="Settings" component={Settings} options={({ navigation })=>navLayout("Settings", navigation)} />
                 <Drawer.Screen name="NotificationList" component={NotificationList} options={({ navigation })=>navLayout("NotificationList", navigation)} />
                 <Drawer.Screen name="ViewItem" component={ViewItems} options={({ navigation })=>navLayout("Product List", navigation)} />
-                <Drawer.Screen name="Cart" component={Cart} options={({ navigation })=>navLayout("Check Out", navigation)} key={Math.floor(Date.now() / 1000)} />
-
-                
+                <Drawer.Screen name="Cart" component={Cart} options={({ navigation })=>navLayout("Check Out", navigation)} /> 
             </Drawer.Navigator>
         </NavigationContainer>
     )

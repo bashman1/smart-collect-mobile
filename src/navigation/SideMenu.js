@@ -133,12 +133,9 @@ export function SideMenu(props) {
                                     size={size}
                                 />
                             )}
-                            label="Products"
+                            label="Stock"
                             onPress={() => { props.navigation.navigate("ViewItem") }}
                         />
-
-                        
-
 
                         <DrawerItem
                             icon={({ color, size }) => (
@@ -148,7 +145,7 @@ export function SideMenu(props) {
                                     size={size}
                                 />
                             )}
-                            label="Stock"
+                            label="Create Product"
                             onPress={() => { props.navigation.navigate('CreateItem') }}
                         />
 
@@ -200,7 +197,7 @@ export function SideMenu(props) {
                             onPress={() => { props.navigation.navigate('Sales') }}
                         />
 
-                        <DrawerItem
+                        {/* <DrawerItem
                             icon={({ color, size }) => (
                                 <IonIcon
                                     name="settings-outline"
@@ -210,7 +207,7 @@ export function SideMenu(props) {
                             )}
                             label="Settings"
                             onPress={() => { props.navigation.navigate('Settings') }}
-                        />
+                        /> */}
                     </Drawer.Section>
                     {/* <Drawer.Section title="Preferences">
                         <TouchableRipple onPress={() => { toggleTheme() }}>

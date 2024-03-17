@@ -87,7 +87,7 @@ const Home = (props: any) => {
                     <View style={styles.gridContainer}>
                         <View style={styles.item}>
 
-                            <TouchableOpacity style={styles.card} onPress={() => { }}>
+                            <TouchableOpacity style={styles.card} onPress={() => { props.navigation.navigate("ViewItem")}}>
                                 <Text style={styles.healthPalBlue}>Stock</Text>
                                 <Image style={styles.homeScreenIcon} source={require('../../assets/1.png')} />
                             </TouchableOpacity>
@@ -95,7 +95,7 @@ const Home = (props: any) => {
                         </View>
                         <View style={styles.item}>
 
-                            <TouchableOpacity style={styles.card} onPress={()=>{}}>
+                            <TouchableOpacity style={styles.card} onPress={()=>{props.navigation.navigate('Sales')}}>
                                 <Text style={styles.healthPalBlue}>Sales</Text>
                                 <Image style={styles.homeScreenIcon} source={require('../../assets/2.png')} />
                             </TouchableOpacity>
@@ -107,8 +107,8 @@ const Home = (props: any) => {
 
 
                 <View style={styles.marginBottom}>
-                    <TouchableOpacity style={styles.touchableButton} onPress={()=>{props.navigation.navigate('Orders')}}>
-                        <Text style={styles.healthPalWhite}>Orders</Text>
+                    <TouchableOpacity style={styles.touchableButton} onPress={()=>{props.navigation.navigate('CreateItem')}}>
+                        <Text style={styles.healthPalWhite}>Create Product</Text>
                     </TouchableOpacity>
                 </View>
             </View>
